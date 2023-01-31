@@ -148,6 +148,60 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+    put:
+      tags:
+        - "Users"
+      description: update profile user
+      summary: update or edit information profile for user
+      security:
+        - JWTAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Chizuru Ichinose"
+                date_of_birth:
+                  type: string
+                  example: "01-04-1996"
+                phone_number:
+                  type: string
+                  example: "0888444222"
+                profile_photo:
+                  type: string
+                  example: ""
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        201:
+          description: success update account information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  name: "Chizuru Ichinose"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  profile_photo: ""
+                  email: "chizichi@example.com"
+                  password: "chizichi123"
+                message: success update account information
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
 components:
   schemas:
     responseObject:
