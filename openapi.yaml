@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: Rental Soulmate
+  description: This is API documentation for example project Rental Soulmate By Alfian Aditya
+
+  version: 1.0.0
+  contact:
+    name: Alfian Aditya
+    email: alfianadityadwi@gmail.com
+servers:
+  - description: Swagger API auto mocking
+    url: link will be update soon
+
+tags:
+  - name: Auth
+  - name: Users
+  - name: Talents
+  - name: Contents
+  - name: Whistlist
+  - name: Bookings
+
+paths:
+  /register:
+    post:
+      tags:
+        - "Auth"
+      description: User register new account
+      summary: Register new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Chizuru Ichinose"
+                date_of_birth:
+                  type: string
+                  example: "01-04-1996"
+                phone_number:
+                  type: string
+                  example: "0888444222"
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        201:
+          description: success create account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Chizuru Ichinose"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  email: "chizichi@example.com"
+                  password: "chizichi123"
+                message: success creating account
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+components:
+  schemas:
+    responseObject:
+      type: object
+      properties:
+        data:
+          type: object
+        message:
+          type: string
+    responseObjectArr:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        message:
+          type: string
+
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "user token"
+  responses:
+    400:
+      description: "error from user"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          example:
+            message: "invalid input from user"
+    500:
+      description: "error from server"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+            example:
+              message: "error from server"
