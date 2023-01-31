@@ -8,8 +8,9 @@ info:
     name: Alfian Aditya
     email: alfianadityadwi@gmail.com
 servers:
-  - description: Swagger API auto mocking
-    url: link will be update soon
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/icxz1/Rental-Soulmate/1.0.0
 
 tags:
   - name: Auth
@@ -106,6 +107,44 @@ paths:
                 message: login success
         400:
           $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /users:
+    get:
+      tags:
+        - "Users"
+      description: getting account information
+      summary: Get account information
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show account profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Chizuru Ichinose"
+                  email: "chizichi@example.com"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  password: "chizichi123"
+                  profile_photo: ""
+                message: success show profile
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
         500:
           $ref: "#/components/responses/500"
 
