@@ -24,8 +24,8 @@ paths:
     post:
       tags:
         - "Auth"
-      description: User register new account
-      summary: Register new user
+      description: User and talent register new account
+      summary: Register new user and talent
       requestBody:
         content:
           application/json:
@@ -69,6 +69,46 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /login:
+    post:
+      tags:
+        - "Auth"
+      description: login to platform
+      summary: login for user and talent
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        200:
+          description: success login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  name: "Chizuru Ichinose"
+                  email: "chizichi@example.com"
+                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
+                message: login success
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
@@ -105,7 +145,7 @@ components:
               message:
                 type: string
           example:
-            message: "invalid input from user"
+            message: "invalid input"
     500:
       description: "error from server"
       content:
