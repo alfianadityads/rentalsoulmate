@@ -1,0 +1,321 @@
+openapi: 3.0.3
+info:
+  title: Rental Soulmate
+  description: This is API documentation for example project Rental Soulmate By Alfian Aditya
+
+  version: 1.0.0
+  contact:
+    name: Alfian Aditya
+    email: alfianadityadwi@gmail.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/icxz1/Rental-Soulmate/1.0.0
+
+tags:
+  - name: Users
+  - name: Talents
+  - name: Contents
+  - name: Whistlist
+  - name: Bookings
+
+paths:
+  /register:
+    post:
+      tags:
+        - "Users"
+      description: User register new account
+      summary: Register new user
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Chizuru Ichinose"
+                date_of_birth:
+                  type: string
+                  example: "01-04-1996"
+                phone_number:
+                  type: string
+                  example: "0888444222"
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        201:
+          description: success create account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Chizuru Ichinose"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  email: "chizichi@example.com"
+                  password: "chizichi123"
+                message: success creating account
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /login:
+    post:
+      tags:
+        - "Users"
+      description: login to platform
+      summary: login for user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        200:
+          description: success login
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  name: "Chizuru Ichinose"
+                  email: "chizichi@example.com"
+                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
+                message: login success
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /users:
+    get:
+      tags:
+        - "Users"
+      description: get all talents contents
+      summary: get all talents contents in homepage
+      responses:
+        200:
+          description: show all talents post contents
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  - id: 1
+                    name_talent: "Megumi Horizka"
+                    age: 22
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shibuya"
+                    available: "saturday afternoon"
+                  - id: 2
+                    name_talent: "Hori Kurima"
+                    age: 20
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shinjuku"
+                    available: "saturday evening"
+                  - id: 3
+                    name_talent: "Toru Inikawa"
+                    age: 23
+                    gender: "male"
+                    profile_photo: ""
+                    area: "Tokyo"
+                    available: "saturday evening"
+                  - id: 4
+                    name_talent: "Megumi Horizka"
+                    age: 22
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shibuya"
+                    available: "sunday morning"
+                message: success show all talents contents
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+
+    put:
+      tags:
+        - "Users"
+      description: update profile user
+      summary: update or edit information profile for user
+      security:
+        - JWTAuth: []
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Chizuru Ichinose"
+                date_of_birth:
+                  type: string
+                  example: "01-04-1996"
+                phone_number:
+                  type: string
+                  example: "0888444222"
+                profile_photo:
+                  type: string
+                  example: ""
+                email:
+                  type: string
+                  format: email
+                  example: "chizichi@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "chizichi123"
+      responses:
+        201:
+          description: success update account information
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  name: "Chizuru Ichinose"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  profile_photo: ""
+                  email: "chizichi@example.com"
+                  password: "chizichi123"
+                message: success update account information
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /users/{id_users}:
+    get:
+      tags:
+        - "Users"
+      description: getting account information
+      summary: Get account information
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: id_users
+          description: "id users"
+          required: true
+          in: path
+          schema:
+            description: "id users"
+            type: string
+            example: 1
+      responses:
+        200:
+          description: success show account profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Chizuru Ichinose"
+                  email: "chizichi@example.com"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  password: "chizichi123"
+                  profile_photo: ""
+                message: success show profile
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+    
+    
+components:
+  schemas:
+    responseObject:
+      type: object
+      properties:
+        data:
+          type: object
+        message:
+          type: string
+    responseObjectArr:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+        message:
+          type: string
+
+  securitySchemes:
+    JWTAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: "user token"
+  responses:
+    400:
+      description: "error from user"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+          example:
+            message: "invalid input"
+    500:
+      description: "error from server"
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+            example:
+              message: "error from server"
