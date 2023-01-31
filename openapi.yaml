@@ -13,7 +13,6 @@ servers:
     url: https://virtserver.swaggerhub.com/icxz1/Rental-Soulmate/1.0.0
 
 tags:
-  - name: Auth
   - name: Users
   - name: Talents
   - name: Contents
@@ -24,9 +23,9 @@ paths:
   /register:
     post:
       tags:
-        - "Auth"
-      description: User and talent register new account
-      summary: Register new user and talent
+        - "Users"
+      description: User register new account
+      summary: Register new user
       requestBody:
         content:
           application/json:
@@ -73,9 +72,9 @@ paths:
   /login:
     post:
       tags:
-        - "Auth"
+        - "Users"
       description: login to platform
-      summary: login for user and talent
+      summary: login for user
       requestBody:
         required: true
         content:
@@ -114,26 +113,46 @@ paths:
     get:
       tags:
         - "Users"
-      description: getting account information
-      summary: Get account information
-      security:
-        - JWTAuth: []
+      description: get all talents contents
+      summary: get all talents contents in homepage
       responses:
         200:
-          description: success show account profile
+          description: show all talents post contents
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/responseObject"
+                $ref: "#/components/schemas/responseObjectArr"
               example:
                 data:
-                  name: "Chizuru Ichinose"
-                  email: "chizichi@example.com"
-                  date_of_birth: "01-04-1996"
-                  phone_number: "0888444222"
-                  password: "chizichi123"
-                  profile_photo: ""
-                message: success show profile
+                  - id: 1
+                    name_talent: "Megumi Horizka"
+                    age: 22
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shibuya"
+                    available: "saturday afternoon"
+                  - id: 2
+                    name_talent: "Hori Kurima"
+                    age: 20
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shinjuku"
+                    available: "saturday evening"
+                  - id: 3
+                    name_talent: "Toru Inikawa"
+                    age: 23
+                    gender: "male"
+                    profile_photo: ""
+                    area: "Tokyo"
+                    available: "saturday evening"
+                  - id: 4
+                    name_talent: "Megumi Horizka"
+                    age: 22
+                    gender: "female"
+                    profile_photo: ""
+                    area: "Shibuya"
+                    available: "sunday morning"
+                message: success show all talents contents
         404:
           description: "account data not found"
           content:
@@ -147,6 +166,7 @@ paths:
                 message: "account data not found"
         500:
           $ref: "#/components/responses/500"
+
 
     put:
       tags:
@@ -202,6 +222,55 @@ paths:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
+
+  /users/{id_users}:
+    get:
+      tags:
+        - "Users"
+      description: getting account information
+      summary: Get account information
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: id_users
+          description: "id users"
+          required: true
+          in: path
+          schema:
+            description: "id users"
+            type: string
+            example: 1
+      responses:
+        200:
+          description: success show account profile
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Chizuru Ichinose"
+                  email: "chizichi@example.com"
+                  date_of_birth: "01-04-1996"
+                  phone_number: "0888444222"
+                  password: "chizichi123"
+                  profile_photo: ""
+                message: success show profile
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+    
+    
 components:
   schemas:
     responseObject:
