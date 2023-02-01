@@ -146,15 +146,15 @@ paths:
                     area: "Tokyo"
                     available: "saturday evening"
                   - id: 4
-                    name_talent: "Megumi Horizka"
-                    age: 22
+                    name_talent: "Lisa Kanakawa"
+                    age: 21
                     gender: "female"
                     profile_photo: ""
                     area: "Shibuya"
                     available: "sunday morning"
                 message: success show all talents contents
         404:
-          description: "account data not found"
+          description: "data not found"
           content:
             application/json:
               schema:
@@ -163,10 +163,9 @@ paths:
                   message:
                     type: string
               example:
-                message: "account data not found"
+                message: "data not found"
         500:
           $ref: "#/components/responses/500"
-
 
     put:
       tags:
@@ -223,7 +222,37 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users/{id_users}:
+    delete:
+      tags:
+        - "Users"
+      description: delete user account
+      summary: delete account
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete account
+        404:
+          description: "ID not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "user not found"
+        500:
+          $ref: "#/components/responses/500"
+
+  /users/{id_user}:
     get:
       tags:
         - "Users"
@@ -232,12 +261,12 @@ paths:
       security:
         - JWTAuth: []
       parameters:
-        - name: id_users
-          description: "id users"
+        - name: id_user
+          description: "id user"
           required: true
           in: path
           schema:
-            description: "id users"
+            description: "id user"
             type: string
             example: 1
       responses:
@@ -269,8 +298,7 @@ paths:
                 message: "account data not found"
         500:
           $ref: "#/components/responses/500"
-    
-    
+
 components:
   schemas:
     responseObject:
