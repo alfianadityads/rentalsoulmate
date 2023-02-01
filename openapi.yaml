@@ -104,8 +104,17 @@ paths:
                   email: "chizichi@example.com"
                   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
                 message: login success
-        400:
-          $ref: "#/components/responses/400"
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
         500:
           $ref: "#/components/responses/500"
 
