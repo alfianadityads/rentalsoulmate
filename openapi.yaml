@@ -424,6 +424,48 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /talents:
+    get:
+      tags:
+        - "Talents"
+      description: get detail talent information
+      summary: show detail talent information
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show detail account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  name: "Julien Angel"
+                  bio: "Cheers up, hypocratic people"
+                  gender: "male"
+                  date_of_birth: "02-12-1995"
+                  area: "Shibuya"
+                  phone_number: "0888222555"
+                  profile_photo: ""
+                  email: "anjul@example.com"
+                message: success show detail account
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+
+
 components:
   schemas:
     responseObject:
