@@ -278,6 +278,7 @@ paths:
                 $ref: "#/components/schemas/responseObject"
               example:
                 data:
+                  id: 1
                   name: "Chizuru Ichinose"
                   email: "chizichi@example.com"
                   date_of_birth: "01-04-1996"
@@ -296,6 +297,72 @@ paths:
                     type: string
               example:
                 message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+  /talents:
+    post:
+      tags:
+        - "Talents"
+      description: talent must register first
+      summary: register for talent
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Julien Angel"
+                bio:
+                  type: string
+                  example: "Cheers up, hypocratic people"
+                gender:
+                  type: string
+                  example: "male"
+                date_of_birth:
+                  type: string
+                  example: "02-12-1995"
+                area:
+                  type: string
+                  example: "Shibuya"
+                phone_number:
+                  type: string
+                  example: "0888222555"
+                profile_photo:
+                  type: string
+                  example: ""
+                email:
+                  type: string
+                  format: email
+                  example: "anjul@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "anjul123"
+      responses:
+        201:
+          description: success create account talent
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 5
+                  name: "Julien Angel"
+                  bio: "Cheers up, hypocratic people"
+                  gender: "male"
+                  date_of_birth: "02-12-1995"
+                  area: "Shibuya"
+                  phone_number: "0888222555"
+                  profile_photo: ""
+                  email: "anjul@example.com"
+                  password: "anjul123"
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
