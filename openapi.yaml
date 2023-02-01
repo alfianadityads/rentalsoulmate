@@ -20,12 +20,12 @@ tags:
   - name: Bookings
 
 paths:
-  /register:
+  /users/register:
     post:
       tags:
         - "Users"
-      description: User register new account
-      summary: Register new user
+      description: user register new account
+      summary: register new user
       requestBody:
         content:
           application/json:
@@ -69,7 +69,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /login:
+  /users/login:
     post:
       tags:
         - "Users"
@@ -300,7 +300,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /talents:
+  /talents/register:
     post:
       tags:
         - "Talents"
@@ -363,6 +363,55 @@ paths:
                   password: "anjul123"
         400:
           $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /talents/login:
+    post:
+      tags:
+        - "Talents"
+      description: login talent account
+      summary: login for talent account
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  format: email
+                  example: "anjul@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "anjul123"
+      responses:
+        200:
+          description: success login to talent account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 5
+                  name: "Julien Angel"
+                  email: "anjul@example.com"
+                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
+                message: success login
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
         500:
           $ref: "#/components/responses/500"
 
