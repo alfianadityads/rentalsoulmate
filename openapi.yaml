@@ -248,7 +248,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "ID not found"
+          description: "account not found"
           content:
             application/json:
               schema:
@@ -257,7 +257,7 @@ paths:
                   message:
                     type: string
               example:
-                message: "user not found"
+                message: "account not found"
         500:
           $ref: "#/components/responses/500"
 
@@ -423,6 +423,138 @@ paths:
                 message: "account data not found"
         500:
           $ref: "#/components/responses/500"
+
+  /talents:
+    get:
+      tags:
+        - "Talents"
+      description: get detail talent information
+      summary: show detail talent information
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show detail account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 5
+                  name: "Julien Angel"
+                  bio: "Cheers up, hypocratic people"
+                  gender: "male"
+                  date_of_birth: "02-12-1995"
+                  area: "Shibuya"
+                  phone_number: "0888222555"
+                  profile_photo: ""
+                  email: "anjul@example.com"
+                message: success show detail account
+        404:
+          description: "account data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+    put:
+      tags:
+        - "Talents"
+      description: talent can edit their porfile information
+      summary: update profile talent information
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Juliana Aan"
+                bio:
+                  type: string
+                  example: "Coffe and Croissant never fail make good mood"
+                area:
+                  type: string
+                  example: "Shinjuku"
+                phone_number:
+                  type: string
+                  example: "0888222555"
+                profile_photo:
+                  type: string
+                  example: ""
+                email:
+                  type: string
+                  format: email
+                  example: "anjul@example.com"
+                password:
+                  type: string
+                  format: password
+                  example: "anjul123"
+      responses:
+        201:
+          description: success update data account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 5
+                  name: "Juliana Aan"
+                  bio: "Coffe and Croissant never fail make good mood"
+                  area: "Shinjuku"
+                  phone_number: "0888222555"
+                  profile_photo: ""
+                  email: "anjul@example.com"
+                  password: "anjul123"
+                message: success update data
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    delete:
+      tags:
+        - "Talents"
+      description: delete talent account data
+      summary: delete talent account
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete account
+        404:
+          description: "account not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account not found"
+        500:
+          $ref: "#/components/responses/500"
+
 
 components:
   schemas:
