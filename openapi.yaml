@@ -248,7 +248,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "ID not found"
+          description: "account not found"
           content:
             application/json:
               schema:
@@ -257,7 +257,7 @@ paths:
                   message:
                     type: string
               example:
-                message: "user not found"
+                message: "account not found"
         500:
           $ref: "#/components/responses/500"
 
@@ -524,6 +524,37 @@ paths:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
+
+    delete:
+      tags:
+        - "Talents"
+      description: delete talent account data
+      summary: delete talent account
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete account
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete account
+        404:
+          description: "account not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account not found"
+        500:
+          $ref: "#/components/responses/500"
+
 
 components:
   schemas:
