@@ -15,7 +15,7 @@ servers:
 tags:
   - name: Users
   - name: Talents
-  - name: Post
+  - name: Posts
   - name: Whistlist
   - name: Bookings
 
@@ -134,33 +134,49 @@ paths:
               example:
                 data:
                   - id: 1
-                    name_talent: "Megumi Horizka"
-                    age: 22
-                    gender: "female"
-                    profile_photo: ""
+                    image: ""
                     area: "Shibuya"
-                    available: "saturday afternoon"
+                    date: "11-02-2023"
+                    time: "13.00 - 15.00"
+                    talents:
+                      id_talents: 1
+                      name: "Megumi Horizka"
+                      age: 22
+                      gender: "female"
+                      profile_photo: ""
                   - id: 2
-                    name_talent: "Hori Kurima"
-                    age: 20
-                    gender: "female"
-                    profile_photo: ""
+                    image: ""
                     area: "Shinjuku"
-                    available: "saturday evening"
+                    date: "11-02-2023"
+                    time: "18.00 - 20.00"
+                    talents:
+                      id_talents: 2
+                      name: "Hori Kurima"
+                      age: 20
+                      gender: "female"
+                      profile_photo: ""
                   - id: 3
-                    name_talent: "Toru Inikawa"
-                    age: 23
-                    gender: "male"
-                    profile_photo: ""
+                    image: ""
                     area: "Tokyo"
-                    available: "saturday evening"
+                    date: "11-02-2023"
+                    time: "17.00 - 19.00"
+                    talents:
+                      id_talents: 3
+                      name_talent: "Toru Inikawa"
+                      age: 23
+                      gender: "male"
+                      profile_photo: ""
                   - id: 4
-                    name_talent: "Lisa Kanakawa"
-                    age: 21
-                    gender: "female"
-                    profile_photo: ""
+                    image: ""
                     area: "Shibuya"
-                    available: "sunday morning"
+                    date: "12-02-2023"
+                    time: "08.00 - 09.00"
+                    talents:
+                      id_talents: 4
+                      name_talent: "Lisa Kanakawa"
+                      age: 21
+                      gender: "female"
+                      profile_photo: ""
                 message: success show all talents contents
         404:
           description: "data not found"
@@ -549,7 +565,7 @@ paths:
   /posts:
     post:
       tags:
-        - "Post"
+        - "Posts"
       description: talents can create post for booking schedule
       summary: create post for talents
       security:
@@ -561,12 +577,15 @@ paths:
             schema:
               type: object
               properties:
-                photo:
+                image:
                   type: string
                   example: ""
                 content:
                   type: string
                   example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                area:
+                  type: string
+                  example: "Shinjuku"
                 date:
                   type: string
                   example: "02-04-2023"
@@ -583,8 +602,9 @@ paths:
               example:
                 data:
                   id: 1
-                  photo: ""
+                  image: ""
                   content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.00"
         400:
