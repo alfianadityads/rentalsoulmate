@@ -118,7 +118,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users:
+  /home:
     get:
       tags:
         - "Users"
@@ -176,6 +176,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /users:
     put:
       tags:
         - "Users"
@@ -261,7 +262,6 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users/{id_user}:
     get:
       tags:
         - "Users"
@@ -269,15 +269,6 @@ paths:
       summary: Get account information
       security:
         - JWTAuth: []
-      parameters:
-        - name: id_user
-          description: "id user"
-          required: true
-          in: path
-          schema:
-            description: "id user"
-            type: string
-            example: 1
       responses:
         200:
           description: success show account profile
@@ -554,7 +545,6 @@ paths:
                 message: "account not found"
         500:
           $ref: "#/components/responses/500"
-
 
 components:
   schemas:
