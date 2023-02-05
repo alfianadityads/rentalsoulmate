@@ -592,6 +592,36 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+    delete:
+      tags:
+        - "Posts"
+      description: talent can delete posts for booking schedule
+      summary: delete talent posts
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete post
+        404:
+          description: "data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "data not found"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
