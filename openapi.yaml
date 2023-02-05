@@ -577,12 +577,15 @@ paths:
             schema:
               type: object
               properties:
-                photo:
+                image:
                   type: string
                   example: ""
                 content:
                   type: string
                   example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                area:
+                  type: string
+                  example: "Shinjuku"
                 date:
                   type: string
                   example: "02-04-2023"
