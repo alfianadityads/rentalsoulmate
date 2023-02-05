@@ -15,7 +15,7 @@ servers:
 tags:
   - name: Users
   - name: Talents
-  - name: Contents
+  - name: Post
   - name: Whistlist
   - name: Bookings
 
@@ -118,7 +118,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users:
+  /home:
     get:
       tags:
         - "Users"
@@ -176,6 +176,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /users:
     put:
       tags:
         - "Users"
@@ -261,7 +262,6 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users/{id_user}:
     get:
       tags:
         - "Users"
@@ -269,15 +269,6 @@ paths:
       summary: Get account information
       security:
         - JWTAuth: []
-      parameters:
-        - name: id_user
-          description: "id user"
-          required: true
-          in: path
-          schema:
-            description: "id user"
-            type: string
-            example: 1
       responses:
         200:
           description: success show account profile
@@ -555,6 +546,81 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /posts:
+    post:
+      tags:
+        - "Post"
+      description: talents can create post for booking schedule
+      summary: create post for talents
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                photo:
+                  type: string
+                  example: ""
+                content:
+                  type: string
+                  example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                date:
+                  type: string
+                  example: "02-04-2023"
+                time:
+                  type: string
+                  example: "17.00 - 19.00"
+      responses:
+        201:
+          description: success create post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  photo: ""
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  date: "02-04-2023"
+                  time: "17.00 - 19.00"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    delete:
+      tags:
+        - "Posts"
+      description: talent can delete posts for booking schedule
+      summary: delete talent posts
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete post
+        404:
+          description: "data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "data not found"
+        500:
+          $ref: "#/components/responses/500"
 
 components:
   schemas:
