@@ -15,7 +15,7 @@ servers:
 tags:
   - name: Users
   - name: Talents
-  - name: Contents
+  - name: Post
   - name: Whistlist
   - name: Bookings
 
@@ -543,6 +543,52 @@ paths:
                     type: string
               example:
                 message: "account not found"
+        500:
+          $ref: "#/components/responses/500"
+
+  /posts:
+    post:
+      tags:
+        - "Post"
+      description: talents can create post for booking schedule
+      summary: create post for talents
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                photo:
+                  type: string
+                  example: ""
+                content:
+                  type: string
+                  example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                date:
+                  type: string
+                  example: "02-04-2023"
+                time:
+                  type: string
+                  example: "17.00 - 19.00"
+      responses:
+        201:
+          description: success create post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  photo: ""
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  date: "02-04-2023"
+                  time: "17.00 - 19.00"
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
