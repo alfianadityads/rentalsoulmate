@@ -15,7 +15,7 @@ servers:
 tags:
   - name: Users
   - name: Talents
-  - name: Post
+  - name: Posts
   - name: Whistlist
   - name: Bookings
 
@@ -549,7 +549,7 @@ paths:
   /posts:
     post:
       tags:
-        - "Post"
+        - "Posts"
       description: talents can create post for booking schedule
       summary: create post for talents
       security:
