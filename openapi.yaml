@@ -743,6 +743,41 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+    get:
+      tags:
+        - "Whistlists"
+      description: user can see all talents in their whistlist
+      summary: see all talents in whistlist
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show all talents
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  id: 1
+                  user_id: 1
+                  talents:
+                    - talents_id: 2
+                      name: "Hori Kurima"
+                      age: 20
+                      gender: "female"
+                      profile_photo: ""
+                    - talents_id: 4
+                      name_talent: "Lisa Kanakawa"
+                      age: 21
+                      gender: "female"
+                      profile_photo: ""
+                message: success show all talents
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
