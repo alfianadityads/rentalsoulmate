@@ -642,6 +642,52 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+    put:
+      tags:
+        - "Posts"
+      description: talent can edit their post content
+      summary: edit post
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                area:
+                  type: string
+                  example: "Shinjuku"
+                date:
+                  type: string
+                  example: "02-04-2023"
+                time:
+                  type: string
+                  example: "17.00 - 19.30"
+      responses:
+        201:
+          description: success update post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  image: ""
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  area: "Shinjuku"
+                  date: "02-04-2023"
+                  time: "17.00 - 19.30"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
