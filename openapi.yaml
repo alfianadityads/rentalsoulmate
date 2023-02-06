@@ -848,6 +848,44 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+    get:
+      tags:
+        - "bookings"
+      description: show bookings history
+      summary: show bookings history
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show bookings history
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  - id: 1
+                    user_id: 1
+                    user_name: "Chizuru Ichinose"
+                    talent_id: 2
+                    talent_name: "Hori Kurima"
+                    total_price: 80000
+                    create_at: "2023-02-06T02:11:48"
+                    status_order: "waiting payment"
+                  - id: 2
+                    user_id: 1
+                    user_name: "Chizuru Ichinose"
+                    talent_id: 4
+                    talent_name: "Lisa Kanakawa"
+                    total_price: 80000
+                    create_at: "2023-01-31T02:11:48"
+                    status_order: "transaction success"
+                message: success show bookings history
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
