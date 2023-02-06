@@ -16,7 +16,7 @@ tags:
   - name: Users
   - name: Talents
   - name: Posts
-  - name: Whistlist
+  - name: Whistlists
   - name: Bookings
 
 paths:
@@ -639,6 +639,250 @@ paths:
                     type: string
               example:
                 message: "data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+    put:
+      tags:
+        - "Posts"
+      description: talent can edit their post content
+      summary: edit post
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: "Wanna hang out with me @ Shinjuku tomorrow?"
+                area:
+                  type: string
+                  example: "Shinjuku"
+                date:
+                  type: string
+                  example: "02-04-2023"
+                time:
+                  type: string
+                  example: "17.00 - 19.30"
+      responses:
+        201:
+          description: success update post
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  image: ""
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  area: "Shinjuku"
+                  date: "02-04-2023"
+                  time: "17.00 - 19.30"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /whistlists:
+    post:
+      tags:
+        - "Whistlists"
+      description: user can add talents to whistlist
+      summary: add talent to whistlist
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                talents_id:
+                  type: number
+                  example: 1
+                talents_name:
+                  type: string
+                  example: "Julian Aan"
+                profile_photo:
+                  type: string
+                  example: ""
+                gender:
+                  type: string
+                  example: "female"
+                age:
+                  type: number
+                  example: 23
+                area:
+                  type: string
+                  example: "Shinjuku"
+      responses:
+        201:
+          description: success add talent to whistlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  talents_id: 1
+                  talents_name: "Julian Aan"
+                  profile_photo: ""
+                  gender: "female"
+                  age: 23
+                  area: "Shinjuku"
+                message: success add talent to whistlist
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    get:
+      tags:
+        - "Whistlists"
+      description: user can see all talents in their whistlist
+      summary: see all talents in whistlist
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show all talents
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  id: 1
+                  user_id: 1
+                  talents:
+                    - talents_id: 2
+                      name: "Hori Kurima"
+                      age: 20
+                      gender: "female"
+                      profile_photo: ""
+                    - talents_id: 4
+                      name_talent: "Lisa Kanakawa"
+                      age: 21
+                      gender: "female"
+                      profile_photo: ""
+                message: success show all talents
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    delete:
+      tags:
+        - "Whistlists"
+      description: delete talent from whistlist
+      summary: delete talent from whistlist
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success delete talent from whistlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete talent from whistlist
+        404:
+          description: "data not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "data not found"
+        500:
+          $ref: "#/components/responses/500"
+
+  /bookings:
+    post:
+      tags:
+        - "bookings"
+      description: add booking to payment gateway
+      summary: add booking to payment gateway
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total_price:
+                  type: number
+                  example: 80000
+      responses:
+        201:
+          description: order payment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  user_id: 1
+                  talent_id: 2
+                  total_price: 80000
+                  create_at: "2023-02-06T02:11:48"
+                  redirect_url: "https://app.sandbox.midtrans.com/snap/v3/redirection/b95128fb-f2ef-4e57-bd89-c4a187cca536"
+                  status_order: "waiting for payment"
+                message: order payment created
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    get:
+      tags:
+        - "bookings"
+      description: show bookings history
+      summary: show bookings history
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: success show bookings history
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  - id: 1
+                    user_id: 1
+                    user_name: "Chizuru Ichinose"
+                    talent_id: 2
+                    talent_name: "Hori Kurima"
+                    total_price: 80000
+                    create_at: "2023-02-06T02:11:48"
+                    status_order: "waiting payment"
+                  - id: 2
+                    user_id: 1
+                    user_name: "Chizuru Ichinose"
+                    talent_id: 4
+                    talent_name: "Lisa Kanakawa"
+                    total_price: 80000
+                    create_at: "2023-01-31T02:11:48"
+                    status_order: "transaction success"
+                message: success show bookings history
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
