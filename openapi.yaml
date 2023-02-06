@@ -808,6 +808,46 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /bookings:
+    post:
+      tags:
+        - "bookings"
+      description: add booking to payment gateway
+      summary: add booking to payment gateway
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                total_price:
+                  type: number
+                  example: 80000
+      responses:
+        201:
+          description: order payment created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  user_id: 1
+                  talent_id: 2
+                  total_price: 80000
+                  create_at: "2023-02-06T02:11:48"
+                  redirect_url: "https://app.sandbox.midtrans.com/snap/v3/redirection/b95128fb-f2ef-4e57-bd89-c4a187cca536"
+                  status_order: "waiting for payment"
+                message: order payment created
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
