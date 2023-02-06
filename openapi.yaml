@@ -16,7 +16,7 @@ tags:
   - name: Users
   - name: Talents
   - name: Posts
-  - name: Whistlist
+  - name: Whistlists
   - name: Bookings
 
 paths:
@@ -683,6 +683,61 @@ paths:
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.30"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /whistlists:
+    post:
+      tags:
+        - "Whistlists"
+      description: user can add talents to whistlist
+      summary: add talent to whistlist
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                talents_id:
+                  type: number
+                  example: 1
+                talents_name:
+                  type: string
+                  example: "Julian Aan"
+                profile_photo:
+                  type: string
+                  example: ""
+                gender:
+                  type: string
+                  example: "female"
+                age:
+                  type: number
+                  example: 23
+                area:
+                  type: string
+                  example: "Shinjuku"
+      responses:
+        201:
+          description: success add talent to whistlist
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  talents_id: 1
+                  talents_name: "Julian Aan"
+                  profile_photo: ""
+                  gender: "female"
+                  age: 23
+                  area: "Shinjuku"
+                message: success add talent to whistlist
         400:
           $ref: "#/components/responses/400"
         500:
