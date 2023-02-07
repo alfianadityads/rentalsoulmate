@@ -915,6 +915,49 @@ paths:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
+
+  /bookings/{bookings_id}:
+    put:
+      tags:
+        - "Bookings"
+      description: update booking status
+      summary: update booking status
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: bookings_id
+          description: "bookings id"
+          required: true
+          in: path
+          schema:
+            description: "bookings_id"
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking_status:
+                  type: string
+            example:
+              booking_status: success
+      responses:
+        200:
+          description: success update booking status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success update booking status
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 components:
   schemas:
     responseObject:
