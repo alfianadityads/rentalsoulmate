@@ -811,7 +811,7 @@ paths:
   /bookings:
     post:
       tags:
-        - "bookings"
+        - "Bookings"
       description: add booking to payment gateway
       summary: add booking to payment gateway
       security:
@@ -850,7 +850,7 @@ paths:
 
     get:
       tags:
-        - "bookings"
+        - "Bookings"
       description: show bookings history
       summary: show bookings history
       security:
@@ -881,6 +881,78 @@ paths:
                     create_at: "2023-01-31T02:11:48"
                     status_order: "transaction success"
                 message: success show bookings history
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /paymentnotification:
+    post:
+      tags:
+        - "Bookings"
+      description: recieve payment notification from payment gateway
+      summary: recieve payment notification from payment gateway
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookings_id:
+                  type: string
+                  example: "transaction-1"
+      responses:
+        200:
+          description: success show order status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success handling payment notification
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /bookings/{bookings_id}:
+    put:
+      tags:
+        - "Bookings"
+      description: update booking status
+      summary: update booking status
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: bookings_id
+          description: "bookings id"
+          required: true
+          in: path
+          schema:
+            description: "bookings_id"
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking_status:
+                  type: string
+            example:
+              booking_status: success
+      responses:
+        200:
+          description: success update booking status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success update booking status
         400:
           $ref: "#/components/responses/400"
         500:
