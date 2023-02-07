@@ -886,6 +886,35 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /paymentnotification:
+    post:
+      tags:
+        - "Bookings"
+      description: recieve payment notification from payment gateway
+      summary: recieve payment notification from payment gateway
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                bookings_id:
+                  type: string
+                  example: "transaction-1"
+      responses:
+        200:
+          description: success show order status
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success handling payment notification
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
 components:
   schemas:
     responseObject:
