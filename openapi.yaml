@@ -811,7 +811,7 @@ paths:
   /bookings:
     post:
       tags:
-        - "bookings"
+        - "Bookings"
       description: add booking to payment gateway
       summary: add booking to payment gateway
       security:
@@ -850,7 +850,7 @@ paths:
 
     get:
       tags:
-        - "bookings"
+        - "Bookings"
       description: show bookings history
       summary: show bookings history
       security:
