@@ -65,7 +65,18 @@ paths:
                   password: "chizichi123"
                 message: success creating account
         400:
-          $ref: "#/components/responses/400"
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              examples:
+                data cannot be empty:
+                  value:
+                    message: data cannot be empty
         500:
           $ref: "#/components/responses/500"
 
