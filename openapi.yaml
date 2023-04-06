@@ -103,7 +103,7 @@ paths:
                   example: "chizichi123"
       responses:
         200:
-          description: success login
+          description: "status OK"
           content:
             application/json:
               schema:
