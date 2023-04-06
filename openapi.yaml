@@ -136,7 +136,10 @@ paths:
               examples:
                 data cannot be empty:
                   value:
-                    message: data cannot be empty
+                    message: data not allowed empty
+                data not matched:
+                  value:
+                    message: password or email not matched
         404:
           description: "status not found"
           content:
