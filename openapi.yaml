@@ -118,6 +118,8 @@ paths:
                   name: "Chizuru Ichinose"
                   email: "chizichi@example.com"
                   token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
+                  role: "User"
+                  profile_picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
                 message: login success
         400:
           description: "status bad request"
@@ -173,7 +175,7 @@ paths:
                       name: "Megumi Horizka"
                       age: 22
                       gender: "female"
-                      profile_photo: ""
+                      profile_picture: ""
                   - id: 2
                     image: ""
                     area: "Shinjuku"
@@ -184,7 +186,7 @@ paths:
                       name: "Hori Kurima"
                       age: 20
                       gender: "female"
-                      profile_photo: ""
+                      profile_picture: ""
                   - id: 3
                     image: ""
                     area: "Tokyo"
@@ -195,7 +197,7 @@ paths:
                       name_talent: "Toru Inikawa"
                       age: 23
                       gender: "male"
-                      profile_photo: ""
+                      profile_picture: ""
                   - id: 4
                     image: ""
                     area: "Shibuya"
@@ -206,7 +208,7 @@ paths:
                       name_talent: "Lisa Kanakawa"
                       age: 21
                       gender: "female"
-                      profile_photo: ""
+                      profile_picture: ""
                 message: success show all talents contents
         404:
           description: "data not found"
@@ -245,7 +247,7 @@ paths:
                 phone_number:
                   type: string
                   example: "0888444222"
-                profile_photo:
+                profile_picture:
                   type: string
                   example: ""
                 email:
@@ -269,7 +271,7 @@ paths:
                   name: "Chizuru Ichinose"
                   date_of_birth: "01-04-1996"
                   phone_number: "0888444222"
-                  profile_photo: ""
+                  profile_picture: ""
                   email: "chizichi@example.com"
                   password: "chizichi123"
                 message: success update account information
@@ -330,7 +332,7 @@ paths:
                   date_of_birth: "01-04-1996"
                   phone_number: "0888444222"
                   password: "chizichi123"
-                  profile_photo: ""
+                  profile_picture: ""
                 message: success show profile
         404:
           description: "account data not found"
@@ -377,7 +379,7 @@ paths:
                 phone_number:
                   type: string
                   example: "0888222555"
-                profile_photo:
+                profile_picture:
                   type: string
                   example: ""
                 email:
@@ -404,7 +406,7 @@ paths:
                   date_of_birth: "02-12-1995"
                   area: "Shibuya"
                   phone_number: "0888222555"
-                  profile_photo: ""
+                  profile_picture: ""
                   email: "anjul@example.com"
                   password: "anjul123"
         400:
@@ -485,7 +487,7 @@ paths:
                   date_of_birth: "02-12-1995"
                   area: "Shibuya"
                   phone_number: "0888222555"
-                  profile_photo: ""
+                  profile_picture: ""
                   email: "anjul@example.com"
                 message: success show detail account
         404:
@@ -528,7 +530,7 @@ paths:
                 phone_number:
                   type: string
                   example: "0888222555"
-                profile_photo:
+                profile_picture:
                   type: string
                   example: ""
                 email:
@@ -553,7 +555,7 @@ paths:
                   bio: "Coffe and Croissant never fail make good mood"
                   area: "Shinjuku"
                   phone_number: "0888222555"
-                  profile_photo: ""
+                  profile_picture: ""
                   email: "anjul@example.com"
                   password: "anjul123"
                 message: success update data
@@ -739,7 +741,7 @@ paths:
                 talents_name:
                   type: string
                   example: "Julian Aan"
-                profile_photo:
+                profile_picture:
                   type: string
                   example: ""
                 gender:
@@ -763,7 +765,7 @@ paths:
                   id: 1
                   talents_id: 1
                   talents_name: "Julian Aan"
-                  profile_photo: ""
+                  profile_picture: ""
                   gender: "female"
                   age: 23
                   area: "Shinjuku"
@@ -796,12 +798,12 @@ paths:
                       name: "Hori Kurima"
                       age: 20
                       gender: "female"
-                      profile_photo: ""
+                      profile_picture: ""
                     - talents_id: 4
                       name_talent: "Lisa Kanakawa"
                       age: 21
                       gender: "female"
-                      profile_photo: ""
+                      profile_picture: ""
                 message: success show all talents
         400:
           $ref: "#/components/responses/400"
