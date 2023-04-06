@@ -13,6 +13,7 @@ servers:
     url: https://virtserver.swaggerhub.com/icxz1/Rental-Soulmate/1.0.0
 
 tags:
+  - name: Auth
   - name: Users
   - name: Talents
   - name: Posts
@@ -23,7 +24,7 @@ paths:
   /users/register:
     post:
       tags:
-        - "Users"
+        - "Auth"
       description: user register new account
       summary: register new user
       requestBody:
@@ -86,7 +87,7 @@ paths:
   /users/login:
     post:
       tags:
-        - "Users"
+        - "Auth"
       description: login to platform
       summary: login for user
       requestBody:
