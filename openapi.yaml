@@ -76,7 +76,10 @@ paths:
               examples:
                 data cannot be empty:
                   value:
-                    message: data cannot be empty
+                    message: data not allowed empty
+                data duplicated:
+                  value:
+                    message: data already used
         500:
           $ref: "#/components/responses/500"
 
