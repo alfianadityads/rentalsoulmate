@@ -87,7 +87,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users/login:
+  /login:
     post:
       tags:
         - "Auth"
