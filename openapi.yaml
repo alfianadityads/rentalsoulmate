@@ -21,7 +21,7 @@ tags:
   - name: Bookings
 
 paths:
-  /users/register:
+  /register:
     post:
       tags:
         - "Auth"
