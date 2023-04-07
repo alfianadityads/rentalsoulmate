@@ -55,7 +55,7 @@ paths:
                   example: "chizichi123"
       responses:
         201:
-          description: success create account
+          description: "status created"
           content:
             application/json:
               schema:
