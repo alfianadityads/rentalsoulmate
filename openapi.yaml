@@ -217,7 +217,7 @@ paths:
                       profile_picture: ""
                 message: success show all talents contents
         404:
-          description: "data not found"
+          description: "status not found"
           content:
             application/json:
               schema:
@@ -226,7 +226,7 @@ paths:
                   message:
                     type: string
               example:
-                message: "data not found"
+                message: data not found
         500:
           $ref: "#/components/responses/500"
 
