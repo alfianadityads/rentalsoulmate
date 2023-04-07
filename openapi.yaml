@@ -21,7 +21,7 @@ tags:
   - name: Bookings
 
 paths:
-  /users/register:
+  /register:
     post:
       tags:
         - "Auth"
@@ -55,7 +55,7 @@ paths:
                   example: "chizichi123"
       responses:
         201:
-          description: success create account
+          description: "status created"
           content:
             application/json:
               schema:
@@ -87,7 +87,7 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /users/login:
+  /login:
     post:
       tags:
         - "Auth"
