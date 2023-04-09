@@ -277,7 +277,16 @@ paths:
                   email: "chizichi@example.com"
                 message: success update account information
         400:
-          $ref: "#/components/responses/400"
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "invalid jwt"
         500:
           $ref: "#/components/responses/500"
 
