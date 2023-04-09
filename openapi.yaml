@@ -262,7 +262,7 @@ paths:
                   example: "chizichi@example.com"
       responses:
         201:
-          description: success update account information
+          description: "status created"
           content:
             application/json:
               schema:
