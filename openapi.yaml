@@ -260,13 +260,9 @@ paths:
                   type: string
                   format: email
                   example: "chizichi@example.com"
-                password:
-                  type: string
-                  format: password
-                  example: "chizichi123"
       responses:
         201:
-          description: success update account information
+          description: "status created"
           content:
             application/json:
               schema:
@@ -279,10 +275,18 @@ paths:
                   phone_number: "0888444222"
                   profile_picture: ""
                   email: "chizichi@example.com"
-                  password: "chizichi123"
                 message: success update account information
         400:
-          $ref: "#/components/responses/400"
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "invalid jwt"
         500:
           $ref: "#/components/responses/500"
 
@@ -295,7 +299,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success delete account
+          description: "status OK"
           content:
             application/json:
               schema:
@@ -303,7 +307,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "account not found"
+          description: "status not found"
           content:
             application/json:
               schema:
@@ -312,7 +316,18 @@ paths:
                   message:
                     type: string
               example:
-                message: "account not found"
+                message: "data not found"
+        400:
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "invalid jwt"
         500:
           $ref: "#/components/responses/500"
 
@@ -325,7 +340,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success show account profile
+          description: "status OK"
           content:
             application/json:
               schema:
@@ -341,7 +356,7 @@ paths:
                   profile_picture: ""
                 message: success show profile
         404:
-          description: "account data not found"
+          description: "status not found"
           content:
             application/json:
               schema:
@@ -351,6 +366,17 @@ paths:
                     type: string
               example:
                 message: "account data not found"
+        400:
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "invalid jwt"
         500:
           $ref: "#/components/responses/500"
 
