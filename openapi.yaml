@@ -260,10 +260,6 @@ paths:
                   type: string
                   format: email
                   example: "chizichi@example.com"
-                password:
-                  type: string
-                  format: password
-                  example: "chizichi123"
       responses:
         201:
           description: success update account information
@@ -279,7 +275,6 @@ paths:
                   phone_number: "0888444222"
                   profile_picture: ""
                   email: "chizichi@example.com"
-                  password: "chizichi123"
                 message: success update account information
         400:
           $ref: "#/components/responses/400"
