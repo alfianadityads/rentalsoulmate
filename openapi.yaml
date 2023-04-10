@@ -471,7 +471,7 @@ paths:
                   example: "anjul123"
       responses:
         201:
-          description: success update data account
+          description: status created
           content:
             application/json:
               schema:
