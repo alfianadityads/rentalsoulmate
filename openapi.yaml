@@ -418,6 +418,17 @@ paths:
                     type: string
               example:
                 message: "account data not found"
+        400:
+          description: "status bad request"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "invalid jwt"
         500:
           $ref: "#/components/responses/500"
 
