@@ -141,18 +141,7 @@ paths:
                   value:
                     message: password or email not matched
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              examples:
-                data not found:
-                  value:
-                    message: data not found
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -217,16 +206,7 @@ paths:
                       profile_picture: ""
                 message: success show all talents contents
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: data not found
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -298,16 +278,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         400:
           $ref: "#/components/responses/400"
         500:
@@ -381,16 +352,7 @@ paths:
                   email: "anjul@example.com"
                 message: success show detail account
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "account data not found"
+          $ref: "#/components/responses/404"
         400:
           $ref: "#/components/responses/400"
         500:
@@ -473,16 +435,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: status not found
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -553,16 +506,7 @@ paths:
               example:
                 message: success delete post
         404:
-          description: "data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -719,16 +663,7 @@ paths:
               example:
                 message: success delete talent from whistlist
         404:
-          description: "data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
