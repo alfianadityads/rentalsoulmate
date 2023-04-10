@@ -956,7 +956,7 @@ components:
           example:
             message: "invalid input"
     500:
-      description: "error from server"
+      description: internal server error
       content:
         application/json:
           schema:
@@ -965,4 +965,4 @@ components:
               message:
                 type: string
             example:
-              message: "error from server"
+              message: internal server error
