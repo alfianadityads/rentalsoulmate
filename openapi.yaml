@@ -408,7 +408,7 @@ paths:
                   email: "anjul@example.com"
                 message: success show detail account
         404:
-          description: "account data not found"
+          description: "status not found"
           content:
             application/json:
               schema:
