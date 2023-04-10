@@ -945,7 +945,7 @@ components:
       description: "user token"
   responses:
     400:
-      description: "error from user"
+      description: status bad request
       content:
         application/json:
           schema:
