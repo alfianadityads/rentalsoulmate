@@ -924,6 +924,17 @@ components:
                 invalid jwt:
                   value:
                     message: "invalid jwt"
+    404:
+          description: status not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "data not found"
     500:
       description: internal server error
       content:
