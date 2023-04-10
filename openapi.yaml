@@ -465,7 +465,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success delete account
+          description: success OK
           content:
             application/json:
               schema:
@@ -473,7 +473,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "account not found"
+          description: status not found
           content:
             application/json:
               schema:
@@ -482,7 +482,7 @@ paths:
                   message:
                     type: string
               example:
-                message: "account not found"
+                message: "data not found"
         500:
           $ref: "#/components/responses/500"
 
