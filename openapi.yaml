@@ -277,16 +277,7 @@ paths:
                   email: "chizichi@example.com"
                 message: success update account information
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -318,16 +309,7 @@ paths:
               example:
                 message: "data not found"
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -367,16 +349,7 @@ paths:
               example:
                 message: "account data not found"
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -419,16 +392,7 @@ paths:
               example:
                 message: "account data not found"
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
