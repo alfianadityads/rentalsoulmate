@@ -953,8 +953,13 @@ components:
             properties:
               message:
                 type: string
-          example:
-            message: "invalid input"
+          examples:
+                invalid input:
+                  value:
+                    message: "invalid input"
+                invalid jwt:
+                  value:
+                    message: "invalid jwt"
     500:
       description: internal server error
       content:
