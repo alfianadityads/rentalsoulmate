@@ -141,18 +141,7 @@ paths:
                   value:
                     message: password or email not matched
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              examples:
-                data not found:
-                  value:
-                    message: data not found
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -217,16 +206,7 @@ paths:
                       profile_picture: ""
                 message: success show all talents contents
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: data not found
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -277,16 +257,7 @@ paths:
                   email: "chizichi@example.com"
                 message: success update account information
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -307,27 +278,9 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -367,131 +320,7 @@ paths:
               example:
                 message: "account data not found"
         400:
-          description: "status bad request"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "invalid jwt"
-        500:
-          $ref: "#/components/responses/500"
-
-  /talents/register:
-    post:
-      tags:
-        - "Talents"
-      description: talent must register first
-      summary: register for talent
-      requestBody:
-        required: true
-        content:
-          multipart/form-data:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  example: "Julien Angel"
-                bio:
-                  type: string
-                  example: "Cheers up, hypocratic people"
-                gender:
-                  type: string
-                  example: "male"
-                date_of_birth:
-                  type: string
-                  example: "02-12-1995"
-                area:
-                  type: string
-                  example: "Shibuya"
-                phone_number:
-                  type: string
-                  example: "0888222555"
-                profile_picture:
-                  type: string
-                  example: ""
-                email:
-                  type: string
-                  format: email
-                  example: "anjul@example.com"
-                password:
-                  type: string
-                  format: password
-                  example: "anjul123"
-      responses:
-        201:
-          description: success create account talent
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/responseObject"
-              example:
-                data:
-                  id: 5
-                  name: "Julien Angel"
-                  bio: "Cheers up, hypocratic people"
-                  gender: "male"
-                  date_of_birth: "02-12-1995"
-                  area: "Shibuya"
-                  phone_number: "0888222555"
-                  profile_picture: ""
-                  email: "anjul@example.com"
-                  password: "anjul123"
-        400:
           $ref: "#/components/responses/400"
-        500:
-          $ref: "#/components/responses/500"
-
-  /talents/login:
-    post:
-      tags:
-        - "Talents"
-      description: login talent account
-      summary: login for talent account
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                email:
-                  type: string
-                  format: email
-                  example: "anjul@example.com"
-                password:
-                  type: string
-                  format: password
-                  example: "anjul123"
-      responses:
-        200:
-          description: success login to talent account
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/responseObject"
-              example:
-                data:
-                  id: 5
-                  name: "Julien Angel"
-                  email: "anjul@example.com"
-                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
-                message: success login
-        404:
-          description: "account data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "account data not found"
         500:
           $ref: "#/components/responses/500"
 
@@ -523,16 +352,9 @@ paths:
                   email: "anjul@example.com"
                 message: success show detail account
         404:
-          description: "account data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "account data not found"
+          $ref: "#/components/responses/404"
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
@@ -575,7 +397,7 @@ paths:
                   example: "anjul123"
       responses:
         201:
-          description: success update data account
+          description: status created
           content:
             application/json:
               schema:
@@ -605,7 +427,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success delete account
+          description: success OK
           content:
             application/json:
               schema:
@@ -613,16 +435,7 @@ paths:
               example:
                 message: success delete account
         404:
-          description: "account not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "account not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -693,16 +506,7 @@ paths:
               example:
                 message: success delete post
         404:
-          description: "data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -859,16 +663,7 @@ paths:
               example:
                 message: success delete talent from whistlist
         404:
-          description: "data not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "data not found"
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
@@ -1049,7 +844,7 @@ components:
       description: "user token"
   responses:
     400:
-      description: "error from user"
+      description: status bad request
       content:
         application/json:
           schema:
@@ -1057,10 +852,26 @@ components:
             properties:
               message:
                 type: string
-          example:
-            message: "invalid input"
+          examples:
+                invalid input:
+                  value:
+                    message: "invalid input"
+                invalid jwt:
+                  value:
+                    message: "invalid jwt"
+    404:
+          description: status not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "data not found"
     500:
-      description: "error from server"
+      description: internal server error
       content:
         application/json:
           schema:
@@ -1069,4 +880,4 @@ components:
               message:
                 type: string
             example:
-              message: "error from server"
+              message: internal server error
