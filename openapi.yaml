@@ -668,7 +668,7 @@ paths:
             example: 1
       responses:
         200:
-          description: success delete talent from whistlist
+          description: status OK
           content:
             application/json:
               schema:
