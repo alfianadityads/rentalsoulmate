@@ -20,6 +20,9 @@ tags:
   - name: Whistlists
   - name: Bookings
 
+########
+# AUTH #
+########
 paths:
   /register:
     post:
@@ -145,6 +148,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+#########
+# USERS #
+#########
   /home:
     get:
       tags:
@@ -324,6 +330,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+###########
+# TALENTS #
+###########
   /talents:
     get:
       tags:
@@ -439,6 +448,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+#########
+# POSTS #
+#########
   /posts:
     post:
       tags:
@@ -471,7 +483,7 @@ paths:
                   example: "17.00 - 19.00"
       responses:
         201:
-          description: success create post
+          description: status created
           content:
             application/json:
               schema:
@@ -484,6 +496,7 @@ paths:
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.00"
+                message: "success create post"
         400:
           $ref: "#/components/responses/400"
         500:
@@ -498,13 +511,15 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success delete post
+          description: status OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/responseObject"
               example:
                 message: success delete post
+        400:
+          $ref: "#/components/responses/400"
         404:
           $ref: "#/components/responses/404"
         500:
@@ -538,7 +553,7 @@ paths:
                   example: "17.00 - 19.30"
       responses:
         201:
-          description: success update post
+          description: status created
           content:
             application/json:
               schema:
@@ -551,11 +566,15 @@ paths:
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.30"
+                message: "success update post"
         400:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
+##############
+# WHISTLISTS #
+##############
   /whistlists:
     post:
       tags:
@@ -667,6 +686,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+############
+# BOOKINGS #
+############
   /bookings:
     post:
       tags:
