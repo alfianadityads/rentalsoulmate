@@ -499,13 +499,15 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success delete post
+          description: status OK
           content:
             application/json:
               schema:
                 $ref: "#/components/schemas/responseObject"
               example:
                 message: success delete post
+        400:
+          $ref: "#/components/responses/400"
         404:
           $ref: "#/components/responses/404"
         500:
