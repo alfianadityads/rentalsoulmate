@@ -16,6 +16,7 @@ tags:
   - name: Auth
   - name: Users
   - name: Talents
+  - name: Follows
   - name: Posts
   - name: Whistlists
   - name: Bookings
@@ -365,6 +366,8 @@ paths:
                   phone_number: "0888222555"
                   profile_picture: ""
                   email: "anjul@example.com"
+                  followers: 58
+                  whistlist: 40
                 message: success show detail account
         404:
           $ref: "#/components/responses/404"
@@ -452,6 +455,71 @@ paths:
                 message: success delete account
         404:
           $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500"
+
+##########
+# FOLLOW #
+##########
+  /follow/{talent_id}:
+    post:
+      tags:
+        - "Follows"
+      description: users can follow talent by talent id
+      summary: follow talent by talent id
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent id"
+            type: string
+            example: 1
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success following talent
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /unfollow/{talent_id}:
+    delete:
+      tags:
+        - "Follows"
+      description: users can unfollow talent by talent id
+      summary: unfollow talent by talent id
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent id"
+            type: string
+            example: 1
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success unfollow talent
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
