@@ -159,7 +159,7 @@ paths:
       summary: get all talents contents in homepage
       responses:
         200:
-          description: show all talents post contents
+          description: status OK
           content:
             application/json:
               schema:
@@ -348,7 +348,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success show detail account
+          description: status OK
           content:
             application/json:
               schema:
@@ -443,7 +443,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success OK
+          description: status OK
           content:
             application/json:
               schema:
@@ -594,7 +594,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success show all talents
+          description: status OK
           content:
             application/json:
               schema:
