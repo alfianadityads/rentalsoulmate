@@ -576,60 +576,6 @@ paths:
 # WHISTLISTS #
 ##############
   /whistlists:
-    post:
-      tags:
-        - "Whistlists"
-      description: user can add talents to whistlist
-      summary: add talent to whistlist
-      security:
-        - JWTAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                talents_id:
-                  type: number
-                  example: 1
-                talents_name:
-                  type: string
-                  example: "Julian Aan"
-                profile_picture:
-                  type: string
-                  example: ""
-                gender:
-                  type: string
-                  example: "female"
-                age:
-                  type: number
-                  example: 23
-                area:
-                  type: string
-                  example: "Shinjuku"
-      responses:
-        201:
-          description: success add talent to whistlist
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/responseObject"
-              example:
-                data:
-                  id: 1
-                  talents_id: 1
-                  talents_name: "Julian Aan"
-                  profile_picture: ""
-                  gender: "female"
-                  age: 23
-                  area: "Shinjuku"
-                message: success add talent to whistlist
-        400:
-          $ref: "#/components/responses/400"
-        500:
-          $ref: "#/components/responses/500"
-
     get:
       tags:
         - "Whistlists"
@@ -665,6 +611,70 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /whistlists/{talent_id}:
+    post:
+      tags:
+        - "Whistlists"
+      description: user can add talents to whistlist
+      summary: add talent to whistlist
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent_id"
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                talents_id:
+                  type: number
+                  example: 1
+                talents_name:
+                  type: string
+                  example: "Julian Aan"
+                profile_picture:
+                  type: string
+                  example: ""
+                gender:
+                  type: string
+                  example: "female"
+                age:
+                  type: number
+                  example: 23
+                area:
+                  type: string
+                  example: "Shinjuku"
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  talents_id: 1
+                  talents_name: "Julian Aan"
+                  profile_picture: ""
+                  gender: "female"
+                  age: 23
+                  area: "Shinjuku"
+                message: success add talent to whistlist
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
     delete:
       tags:
         - "Whistlists"
@@ -672,6 +682,15 @@ paths:
       summary: delete talent from whistlist
       security:
         - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent_id"
+            type: string
+            example: 1
       responses:
         200:
           description: success delete talent from whistlist
