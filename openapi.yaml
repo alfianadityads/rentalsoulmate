@@ -159,7 +159,7 @@ paths:
       summary: get all talents contents in homepage
       responses:
         200:
-          description: show all talents post contents
+          description: status OK
           content:
             application/json:
               schema:
@@ -174,6 +174,7 @@ paths:
                     talents:
                       id_talents: 1
                       name: "Megumi Horizka"
+                      role: "Talent"
                       age: 22
                       gender: "female"
                       profile_picture: ""
@@ -185,6 +186,7 @@ paths:
                     talents:
                       id_talents: 2
                       name: "Hori Kurima"
+                      role: "Talent"
                       age: 20
                       gender: "female"
                       profile_picture: ""
@@ -196,6 +198,7 @@ paths:
                     talents:
                       id_talents: 3
                       name_talent: "Toru Inikawa"
+                      role: "Talent"
                       age: 23
                       gender: "male"
                       profile_picture: ""
@@ -207,6 +210,7 @@ paths:
                     talents:
                       id_talents: 4
                       name_talent: "Lisa Kanakawa"
+                      role: "Talent"
                       age: 21
                       gender: "female"
                       profile_picture: ""
@@ -257,6 +261,7 @@ paths:
                 data:
                   id: 1
                   name: "Chizuru Ichinose"
+                  role: "User"
                   date_of_birth: "01-04-1996"
                   phone_number: "0888444222"
                   profile_picture: ""
@@ -343,7 +348,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success show detail account
+          description: status OK
           content:
             application/json:
               schema:
@@ -352,6 +357,7 @@ paths:
                 data:
                   id: 5
                   name: "Julien Angel"
+                  role: "Talent"
                   bio: "Cheers up, hypocratic people"
                   gender: "male"
                   date_of_birth: "02-12-1995"
@@ -415,6 +421,7 @@ paths:
                 data:
                   id: 5
                   name: "Juliana Aan"
+                  role: "Talent"
                   bio: "Coffe and Croissant never fail make good mood"
                   area: "Shinjuku"
                   phone_number: "0888222555"
@@ -436,7 +443,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success OK
+          description: status OK
           content:
             application/json:
               schema:
@@ -493,6 +500,7 @@ paths:
                   id: 1
                   image: ""
                   content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  role: "Talent"
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.00"
@@ -563,6 +571,7 @@ paths:
                   id: 1
                   image: ""
                   content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  role: "Talent"
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.30"
@@ -576,60 +585,6 @@ paths:
 # WHISTLISTS #
 ##############
   /whistlists:
-    post:
-      tags:
-        - "Whistlists"
-      description: user can add talents to whistlist
-      summary: add talent to whistlist
-      security:
-        - JWTAuth: []
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                talents_id:
-                  type: number
-                  example: 1
-                talents_name:
-                  type: string
-                  example: "Julian Aan"
-                profile_picture:
-                  type: string
-                  example: ""
-                gender:
-                  type: string
-                  example: "female"
-                age:
-                  type: number
-                  example: 23
-                area:
-                  type: string
-                  example: "Shinjuku"
-      responses:
-        201:
-          description: success add talent to whistlist
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/responseObject"
-              example:
-                data:
-                  id: 1
-                  talents_id: 1
-                  talents_name: "Julian Aan"
-                  profile_picture: ""
-                  gender: "female"
-                  age: 23
-                  area: "Shinjuku"
-                message: success add talent to whistlist
-        400:
-          $ref: "#/components/responses/400"
-        500:
-          $ref: "#/components/responses/500"
-
     get:
       tags:
         - "Whistlists"
@@ -639,7 +594,7 @@ paths:
         - JWTAuth: []
       responses:
         200:
-          description: success show all talents
+          description: status OK
           content:
             application/json:
               schema:
@@ -651,15 +606,57 @@ paths:
                   talents:
                     - talents_id: 2
                       name: "Hori Kurima"
+                      role: "Talent"
                       age: 20
                       gender: "female"
                       profile_picture: ""
                     - talents_id: 4
                       name_talent: "Lisa Kanakawa"
+                      role: "Talent"
                       age: 21
                       gender: "female"
-                      profile_picture: ""
+                      profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
                 message: success show all talents
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /whistlists/{talent_id}:
+    post:
+      tags:
+        - "Whistlists"
+      description: user can add talents to whistlist
+      summary: add talent to whistlist
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent_id"
+            type: string
+            example: 1
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  talents_id: 1
+                  talents_name: "Julian Aan"
+                  role: "Talent"
+                  profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
+                  gender: "female"
+                  age: 23
+                  area: "Shinjuku"
+                message: success add talent to whistlist
         400:
           $ref: "#/components/responses/400"
         500:
@@ -672,9 +669,18 @@ paths:
       summary: delete talent from whistlist
       security:
         - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent_id"
+            type: string
+            example: 1
       responses:
         200:
-          description: success delete talent from whistlist
+          description: status OK
           content:
             application/json:
               schema:
