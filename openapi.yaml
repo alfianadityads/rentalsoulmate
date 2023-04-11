@@ -541,7 +541,7 @@ paths:
                   example: "17.00 - 19.30"
       responses:
         201:
-          description: success update post
+          description: status created
           content:
             application/json:
               schema:
@@ -554,6 +554,7 @@ paths:
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.30"
+                message: "success update post"
         400:
           $ref: "#/components/responses/400"
         500:
