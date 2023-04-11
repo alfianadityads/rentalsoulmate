@@ -20,6 +20,9 @@ tags:
   - name: Whistlists
   - name: Bookings
 
+########
+# AUTH #
+########
 paths:
   /register:
     post:
@@ -145,6 +148,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+#########
+# USERS #
+#########
   /home:
     get:
       tags:
@@ -324,6 +330,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+###########
+# TALENTS #
+###########
   /talents:
     get:
       tags:
@@ -439,6 +448,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+#########
+# POSTS #
+#########
   /posts:
     post:
       tags:
@@ -560,6 +572,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+##############
+# WHISTLISTS #
+##############
   /whistlists:
     post:
       tags:
@@ -671,6 +686,9 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+############
+# BOOKINGS #
+############
   /bookings:
     post:
       tags:
