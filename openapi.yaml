@@ -366,6 +366,8 @@ paths:
                   phone_number: "0888222555"
                   profile_picture: ""
                   email: "anjul@example.com"
+                  followers: 58
+                  whistlist: 40
                 message: success show detail account
         404:
           $ref: "#/components/responses/404"
