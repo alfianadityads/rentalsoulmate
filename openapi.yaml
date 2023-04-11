@@ -174,6 +174,7 @@ paths:
                     talents:
                       id_talents: 1
                       name: "Megumi Horizka"
+                      role: "Talent"
                       age: 22
                       gender: "female"
                       profile_picture: ""
@@ -185,6 +186,7 @@ paths:
                     talents:
                       id_talents: 2
                       name: "Hori Kurima"
+                      role: "Talent"
                       age: 20
                       gender: "female"
                       profile_picture: ""
@@ -196,6 +198,7 @@ paths:
                     talents:
                       id_talents: 3
                       name_talent: "Toru Inikawa"
+                      role: "Talent"
                       age: 23
                       gender: "male"
                       profile_picture: ""
@@ -207,6 +210,7 @@ paths:
                     talents:
                       id_talents: 4
                       name_talent: "Lisa Kanakawa"
+                      role: "Talent"
                       age: 21
                       gender: "female"
                       profile_picture: ""
@@ -257,6 +261,7 @@ paths:
                 data:
                   id: 1
                   name: "Chizuru Ichinose"
+                  role: "User"
                   date_of_birth: "01-04-1996"
                   phone_number: "0888444222"
                   profile_picture: ""
@@ -352,6 +357,7 @@ paths:
                 data:
                   id: 5
                   name: "Julien Angel"
+                  role: "Talent"
                   bio: "Cheers up, hypocratic people"
                   gender: "male"
                   date_of_birth: "02-12-1995"
@@ -415,6 +421,7 @@ paths:
                 data:
                   id: 5
                   name: "Juliana Aan"
+                  role: "Talent"
                   bio: "Coffe and Croissant never fail make good mood"
                   area: "Shinjuku"
                   phone_number: "0888222555"
@@ -493,6 +500,7 @@ paths:
                   id: 1
                   image: ""
                   content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  role: "Talent"
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.00"
@@ -563,6 +571,7 @@ paths:
                   id: 1
                   image: ""
                   content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  role: "Talent"
                   area: "Shinjuku"
                   date: "02-04-2023"
                   time: "17.00 - 19.30"
