@@ -606,11 +606,13 @@ paths:
                   talents:
                     - talents_id: 2
                       name: "Hori Kurima"
+                      role: "Talent"
                       age: 20
                       gender: "female"
                       profile_picture: ""
                     - talents_id: 4
                       name_talent: "Lisa Kanakawa"
+                      role: "Talent"
                       age: 21
                       gender: "female"
                       profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
@@ -649,6 +651,7 @@ paths:
                   id: 1
                   talents_id: 1
                   talents_name: "Julian Aan"
+                  role: "Talent"
                   profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
                   gender: "female"
                   age: 23
