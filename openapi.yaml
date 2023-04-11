@@ -604,7 +604,7 @@ paths:
                       name_talent: "Lisa Kanakawa"
                       age: 21
                       gender: "female"
-                      profile_picture: ""
+                      profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
                 message: success show all talents
         400:
           $ref: "#/components/responses/400"
@@ -640,7 +640,7 @@ paths:
                   id: 1
                   talents_id: 1
                   talents_name: "Julian Aan"
-                  profile_picture: ""
+                  profile_picture: "https://unsplash.com/photos/rDEOVtE7vOs"
                   gender: "female"
                   age: 23
                   area: "Shinjuku"
