@@ -126,9 +126,9 @@ paths:
                   id: 1
                   name: "Chizuru Ichinose"
                   email: "chizichi@example.com"
-                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
                   role: "User"
                   profile_picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                  token: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdXRob3JpemVkIjp0cnVlLCJ1c2VySUQiOjR9.QTZxERh4CwC_UnL_eJvTi_A_qdLeBZ-IjR4nqoxjodk"
                 message: login success
         400:
           description: "status bad request"
@@ -158,8 +158,10 @@ paths:
     get:
       tags:
         - "Users"
-      description: get all talents contents
-      summary: get all talents contents in homepage
+      description: show all talents contents
+      summary: show all talents contents in homepage
+      security:
+        - JWTAuth: []
       responses:
         200:
           description: status OK
@@ -302,7 +304,7 @@ paths:
       tags:
         - "Users"
       description: getting account information
-      summary: Get account information
+      summary: show account information
       security:
         - JWTAuth: []
       responses:
@@ -316,12 +318,56 @@ paths:
                 data:
                   id: 1
                   name: "Chizuru Ichinose"
+                  role: "User"
                   email: "chizichi@example.com"
                   date_of_birth: "01-04-1996"
                   phone_number: "0888444222"
-                  password: "chizichi123"
                   profile_picture: ""
                 message: success show profile
+        404:
+          description: "status not found"
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "account data not found"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /talents/{talent_id}:
+    get:
+      tags:
+        - "Users"
+      description: getting talent account information
+      summary: show talent account detail information
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: "status OK"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 5
+                  name: "Julien Angel"
+                  role: "Talent"
+                  bio: "Cheers up, hypocratic people"
+                  gender: "male"
+                  date_of_birth: "02-12-1995"
+                  area: "Shibuya"
+                  profile_picture: ""
+                  followers: 58
+                  whistlists: 40
+                message: success show talent profile
         404:
           description: "status not found"
           content:
@@ -369,7 +415,7 @@ paths:
                   profile_picture: ""
                   email: "anjul@example.com"
                   followers: 58
-                  whistlist: 40
+                  whistlists: 40
                 message: success show detail account
         404:
           $ref: "#/components/responses/404"
@@ -411,10 +457,6 @@ paths:
                   type: string
                   format: email
                   example: "anjul@example.com"
-                password:
-                  type: string
-                  format: password
-                  example: "anjul123"
       responses:
         201:
           description: status created
@@ -432,7 +474,6 @@ paths:
                   phone_number: "0888222555"
                   profile_picture: ""
                   email: "anjul@example.com"
-                  password: "anjul123"
                 message: success update data
         400:
           $ref: "#/components/responses/400"
