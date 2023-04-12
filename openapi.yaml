@@ -690,8 +690,55 @@ paths:
               example:
                 data:
                   id: 1
-                  content: "Wanna hang out with u @ Shinjuku tomorrow?"
+                  comment: "Wanna hang out with u @ Shinjuku tomorrow?"
                 message: "success create comment"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    get:
+      tags:
+        - "Comments"
+      description: show comment in talent post by post id
+      summary: show comment in talend post
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  - id: 1
+                    user_id: 1
+                    user_name: miku
+                    comment: "Wanna hang out with u @ Shinjuku tomorrow?"
+                  - id: 2
+                    user_id: 5
+                    user_name: keita
+                    comment: "Aww cant wait meet u for another chance"
+                  - id: 3
+                    user_id: 1
+                    user_name: miku
+                    comment: "beautiful as alwaysss"
+                  - id: 4
+                    user_id: 7
+                    user_name: hamamayu
+                    comment: "sad bcs not at shinjuku tommorow T_T"
+                message: "success show all comments"
         400:
           $ref: "#/components/responses/400"
         500:
@@ -700,7 +747,7 @@ paths:
   /comments/{post_id}/{comment_id}:
     delete:
       tags:
-        - "Comment"
+        - "Comments"
       description: users can delete comment on talent post
       summary: delete users comment
       security:
