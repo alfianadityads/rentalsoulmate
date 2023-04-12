@@ -364,9 +364,7 @@ paths:
                   gender: "male"
                   date_of_birth: "02-12-1995"
                   area: "Shibuya"
-                  phone_number: "0888222555"
                   profile_picture: ""
-                  email: "anjul@example.com"
                   followers: 58
                   whistlists: 40
                 message: success show talent profile
