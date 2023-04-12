@@ -812,9 +812,6 @@ paths:
               schema:
                 $ref: "#/components/schemas/responseObject"
               example:
-                data:
-                  id: 1
-                  comment: "Wanna hang out with u @ Shinjuku tomorrow?"
                 message: "success like post"
         400:
           $ref: "#/components/responses/400"
