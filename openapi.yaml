@@ -690,12 +690,52 @@ paths:
               example:
                 data:
                   id: 1
-                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  content: "Wanna hang out with u @ Shinjuku tomorrow?"
                 message: "success create comment"
         400:
           $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
+
+  /comments/{post_id}/{comment_id}:
+    delete:
+      tags:
+        - "Comment"
+      description: users can delete comment on talent post
+      summary: delete users comment
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+        - name: comment_id
+          description: "comment id"
+          required: true
+          in: path
+          schema:
+            description: "comment id"
+            type: string
+            example: 1
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: success delete comment
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 ##############
 # WHISTLISTS #
 ##############
