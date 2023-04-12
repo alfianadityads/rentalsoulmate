@@ -19,6 +19,7 @@ tags:
   - name: Follows
   - name: Posts
   - name: Comments
+  - name: Likes
   - name: Whistlists
   - name: Bookings
 
@@ -778,6 +779,43 @@ paths:
                 $ref: "#/components/schemas/responseObject"
               example:
                 message: success delete comment
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+##########
+# LIKES #
+#########
+  /likes/{post_id}:
+    post:
+      tags:
+        - "Likes"
+      description:  like to talent post by post id
+      summary:  like to talend post
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  comment: "Wanna hang out with u @ Shinjuku tomorrow?"
+                message: "success like post"
         400:
           $ref: "#/components/responses/400"
         500:
