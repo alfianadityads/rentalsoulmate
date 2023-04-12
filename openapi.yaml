@@ -18,6 +18,7 @@ tags:
   - name: Talents
   - name: Follows
   - name: Posts
+  - name: Comments
   - name: Whistlists
   - name: Bookings
 
@@ -649,6 +650,52 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+#############
+# COMMENTS #
+############
+  /comments/{post_id}:
+    post:
+      tags:
+        - "Comments"
+      description: make comment to talent post by post id
+      summary: make comment to talend post
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  example: "wanna meet you tommorow @ shinjuku aww"
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                data:
+                  id: 1
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                message: "success create comment"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
 ##############
 # WHISTLISTS #
 ##############
