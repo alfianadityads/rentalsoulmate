@@ -160,6 +160,8 @@ paths:
         - "Users"
       description: show all talents contents
       summary: show all talents contents in homepage
+      security:
+        - JWTAuth: []
       responses:
         200:
           description: status OK
