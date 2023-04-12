@@ -787,12 +787,12 @@ paths:
 ##########
 # LIKES #
 #########
-  /likes/{post_id}:
+  /like/{post_id}:
     post:
       tags:
         - "Likes"
-      description:  like to talent post by post id
-      summary:  like to talend post
+      description: like to talent post by post id
+      summary: like to talend post
       security:
         - JWTAuth: []
       parameters:
@@ -813,6 +813,37 @@ paths:
                 $ref: "#/components/schemas/responseObject"
               example:
                 message: "success like post"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+  /unlike/{post_id}:
+    delete:
+      tags:
+        - "Likes"
+      description:  unlike to talent post by post id
+      summary: unlike to talend post
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: "success unlike post"
         400:
           $ref: "#/components/responses/400"
         500:
