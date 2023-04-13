@@ -348,6 +348,15 @@ paths:
       summary: show talent account detail information
       security:
         - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent id"
+            type: string
+            example: 1
       responses:
         200:
           description: "status OK"
@@ -618,6 +627,66 @@ paths:
                 message: "success create post"
         400:
           $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
+    get:
+      tags:
+        - "Posts"
+      description: talents can show all their post in profile
+      summary: show all post in talent profile
+      security:
+        - JWTAuth: []
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  - id: 1
+                    image: ""
+                    content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                    role: "Talent"
+                    area: "Shinjuku"
+                    date: "02-04-2023"
+                    time: "17.00 - 19.00"
+                    likes: 37
+                    comments: 8
+                  - id: 2
+                    image: ""
+                    content: "Sunny day, yeey!. Come here @ park w/ me :3"
+                    role: "Talent"
+                    area: "Shinjuku"
+                    date: "25-03-2023"
+                    time: "17.00 - 19.00"
+                    likes: 27
+                    comments: 12
+                  - id: 3
+                    image: ""
+                    content: "yeeys, cant wait meet u ma friend!!! <3"
+                    role: "Talent"
+                    area: "Shinjuku"
+                    date: "17-03-2023"
+                    time: "17.00 - 19.00"
+                    likes: 48
+                    comments: 3
+                  - id: 4
+                    image: ""
+                    content: "Beautiful day right now isn't it?"
+                    role: "Talent"
+                    area: "Shinjuku"
+                    date: "15-03-2023"
+                    time: "17.00 - 19.00"
+                    likes: 32
+                    comments: 5
+                message: success show all posts
+        400:
+          $ref: "#/components/responses/400"
+        404:
+          $ref: "#/components/responses/404"
         500:
           $ref: "#/components/responses/500"
 
