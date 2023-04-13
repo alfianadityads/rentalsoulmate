@@ -348,6 +348,15 @@ paths:
       summary: show talent account detail information
       security:
         - JWTAuth: []
+      parameters:
+        - name: talent_id
+          description: "talent id"
+          required: true
+          in: path
+          schema:
+            description: "talent id"
+            type: string
+            example: 1
       responses:
         200:
           description: "status OK"
