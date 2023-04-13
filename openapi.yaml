@@ -761,6 +761,49 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /post/{post_id}:
+    get:
+      tags:
+        - "Posts"
+      description: show detail post by post id
+      summary: show detail post
+      security:
+        - JWTAuth: []
+      parameters:
+        - name: post_id
+          description: "post id"
+          required: true
+          in: path
+          schema:
+            description: "post id"
+            type: string
+            example: 1
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObjectArr"
+              example:
+                data:
+                  id: 1
+                  image: ""
+                  content: "Wanna hang out with me @ Shinjuku tomorrow?"
+                  role: "Talent"
+                  area: "Shinjuku"
+                  date: "02-04-2023"
+                  time: "17.00 - 19.00"
+                  likes: 37
+                  comments: 8
+                message: success show detail post
+        400:
+          $ref: "#/components/responses/400"
+        404:
+          $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500"
+
 #############
 # COMMENTS #
 ############
@@ -769,7 +812,7 @@ paths:
       tags:
         - "Comments"
       description: make comment to talent post by post id
-      summary: make comment to talend post
+      summary: make comment to talent post
       security:
         - JWTAuth: []
       parameters:
@@ -811,8 +854,8 @@ paths:
     get:
       tags:
         - "Comments"
-      description: show comment in talent post by post id
-      summary: show comment in talend post
+      description: show all comments in talent post by post id
+      summary: show all comments in talent post by post id
       security:
         - JWTAuth: []
       parameters:
