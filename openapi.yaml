@@ -16,6 +16,7 @@ tags:
   - name: Auth
   - name: Users
   - name: Talents
+  - name: Search
   - name: Follows
   - name: Posts
   - name: Comments
@@ -340,59 +341,6 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
-  /talents/{talent_id}:
-    get:
-      tags:
-        - "Users"
-      description: getting talent account information
-      summary: show talent account detail information
-      security:
-        - JWTAuth: []
-      parameters:
-        - name: talent_id
-          description: "talent id"
-          required: true
-          in: path
-          schema:
-            description: "talent id"
-            type: string
-            example: 1
-      responses:
-        200:
-          description: "status OK"
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/responseObject"
-              example:
-                data:
-                  id: 5
-                  name: "Julien Angel"
-                  role: "Talent"
-                  bio: "Cheers up, hypocratic people"
-                  gender: "male"
-                  date_of_birth: "02-12-1995"
-                  area: "Shibuya"
-                  profile_picture: ""
-                  followers: 58
-                  whistlists: 40
-                message: success show talent profile
-        404:
-          description: "status not found"
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  message:
-                    type: string
-              example:
-                message: "account data not found"
-        400:
-          $ref: "#/components/responses/400"
-        500:
-          $ref: "#/components/responses/500"
-
 ###########
 # TALENTS #
 ###########
@@ -507,6 +455,120 @@ paths:
                 message: success delete account
         404:
           $ref: "#/components/responses/404"
+        500:
+          $ref: "#/components/responses/500"
+
+  /users/{talent_id}:
+      get:
+        tags:
+          - "Talents"
+        description: getting talent account information
+        summary: show talent account detail information
+        security:
+          - JWTAuth: []
+        parameters:
+          - name: talent_id
+            description: "talent id"
+            required: true
+            in: path
+            schema:
+              description: "talent id"
+              type: string
+              example: 1
+        responses:
+          200:
+            description: "status OK"
+            content:
+              application/json:
+                schema:
+                  $ref: "#/components/schemas/responseObject"
+                example:
+                  data:
+                    id: 5
+                    name: "Julien Angel"
+                    role: "Talent"
+                    bio: "Cheers up, hypocratic people"
+                    gender: "male"
+                    date_of_birth: "02-12-1995"
+                    area: "Shibuya"
+                    profile_picture: ""
+                    followers: 58
+                    whistlists: 40
+                  message: success show talent profile
+          404:
+            description: "status not found"
+            content:
+              application/json:
+                schema:
+                  type: object
+                  properties:
+                    message:
+                      type: string
+                example:
+                  message: "data not found"
+          400:
+            $ref: "#/components/responses/400"
+          500:
+            $ref: "#/components/responses/500"
+
+##########
+# SEARCH #
+##########
+  /search:
+    get:
+      tags:
+        - "Search"
+      summary: search talent by their name
+      description: search spesific talents by their name
+      security:
+        - JWTAuth: []
+      parameters:
+        - in: query
+          name: offset
+          schema:
+            type: integer
+          description: the numbers of result talent
+        - in: query
+          name: q
+          schema:
+            type: string
+          examples:
+            username:
+              value: "angel"
+          required: true
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                data:
+                  - id: 1
+                    profile_picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    name: "Angela"
+                    bio: "Cheerrss up <3"
+                    role: "Talent"
+                  - id: 2
+                    profile_picture: "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png"
+                    name: "Angelina"
+                    bio: "Gomenasai, onichan~"
+                    role: "Talent"
+                message: "success find talent"
+        404:
+          description: status not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "data not found"
+        400:
+          $ref: "#/components/responses/400"
         500:
           $ref: "#/components/responses/500"
 
