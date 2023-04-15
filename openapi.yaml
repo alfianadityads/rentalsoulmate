@@ -519,7 +519,7 @@ paths:
     put:
       tags:
         - "Password"
-      summary: change password
+      summary: change users & talent password
       description: endpoint for change password
       security:
         - JWTAuth: []
