@@ -16,6 +16,7 @@ tags:
   - name: Auth
   - name: Users
   - name: Talents
+  - name: Password
   - name: Search
   - name: Follows
   - name: Posts
@@ -510,6 +511,65 @@ paths:
             $ref: "#/components/responses/400"
           500:
             $ref: "#/components/responses/500"
+
+############
+# PASSWORD #
+###########
+  /changepassword:
+    put:
+      tags:
+        - "Password"
+      summary: change users & talent password
+      description: endpoint for change password
+      security:
+        - JWTAuth: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                old_password:
+                  type: string
+                  format: password
+                new_password:
+                  type: string
+                  format: password
+                confirmation_password:
+                  type: string
+                  format: password
+            example:
+              old_password: "chizichi123"
+              new_password: "Nokimaru1234"
+              confirmation_password: "Nokimaru1234"
+      responses:
+        200:
+          description: status OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+              example:
+                message: "success change password"
+        400:
+          $ref: "#/components/responses/400"
+        404:
+          description: status not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                example:
+                  message: "data not found"
+        500:
+          $ref: "#/components/responses/500"
 
 ##########
 # SEARCH #
