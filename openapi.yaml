@@ -554,7 +554,7 @@ paths:
                   message:
                     type: string
               example:
-                message: "success update password"
+                message: "success change password"
         400:
           $ref: "#/components/responses/400"
         404:
