@@ -342,6 +342,59 @@ paths:
         500:
           $ref: "#/components/responses/500"
 
+  /users/{talent_id}/requestorder:
+    post:
+      tags:
+        - Users
+      summary: "request order to talent"
+      description: "request order to talent for booking"
+      security:
+        - JWTAuth: []
+      parameters:
+          - name: talent_id
+            description: "talent id"
+            required: true
+            in: path
+            schema:
+              description: "talent id"
+              type: string
+              example: 1
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                request:
+                  type: string
+                  example: "requested"
+                place:
+                  type: string
+                  example: "Shinjuku"
+                booking_date:
+                  type: string
+                  example: "02-04-2023"
+                booking_time:
+                  type: string
+                  example: "17.00 - 19.00"
+                total_price:
+                  type: number
+                  example: 200000
+      responses:
+        201:
+          description: status created
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/responseObject"
+              example:
+                message: "success send your request order to talent"
+        400:
+          $ref: "#/components/responses/400"
+        500:
+          $ref: "#/components/responses/500"
+
 ###########
 # TALENTS #
 ###########
